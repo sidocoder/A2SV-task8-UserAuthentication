@@ -12,6 +12,7 @@
   justify-items: center;
   min-height: 100svh;
   padding: 80px;
+  margin-top: 50px;
   gap: 64px;
   font-family: var(--font-geist-sans);
 }
@@ -91,21 +92,7 @@ a.secondary {
   min-width: 158px;
 }
 
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
 
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
-}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
@@ -117,11 +104,6 @@ a.secondary {
   a.secondary:hover {
     background: var(--button-secondary-hover);
     border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
   }
 }
 
@@ -153,11 +135,7 @@ a.secondary {
     min-width: auto;
   }
 
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+  
 }
 
 @media (prefers-color-scheme: dark) {
