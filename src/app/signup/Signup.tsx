@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { GoogleLogin } from "@react-oauth/google";
+import {jwtDecode} from "jwt-decode";
 
 const BASE_URL = "https://akil-backend.onrender.com";
 
@@ -55,6 +57,30 @@ const Signup = () => {
     }
   };
 
+// ...provider
+const handleGoogleSuccess = async (credentialResponse: any) => {
+  try {
+    const token = credentialResponse.credential;
+
+    // decode Google token
+    const decoded: any = jwtDecode(token!);
+    console.log("Google user:", decoded);
+
+    // Send token to backend
+    const res = await axios.post(`${BASE_URL}/auth/google`, {
+      token,
+    });
+
+    if (res.data.success) {
+      router.push("/dashboard");
+    } else {
+      setError("Google signup failed");
+    }
+  } catch (err) {
+    setError("Something went wrong with Google signup");
+  }
+};
+
   return (
     <div className="bg-gray-50 my-5">
       <div className="mx-96 p-10 shadow-2xl shadow-gray-400 bg-white">
@@ -62,12 +88,16 @@ const Signup = () => {
           Sign Up Today!
         </h1>
 
-        {/* Google Button */}
-        <div className="border border-blue-200 rounded my-5 p-2 gap-3 py-3 flex items-center justify-center text-blue-800 font-bold">
-          <img src="/images/google.png" alt="google" className="size-6" />
-          <p>Sign Up with Google</p>
+        {/* Google Button */} 
+        <div className="p-2">          
+             <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => setError("Google Sign Up Failed")}
+                size="large"
+                text="signup_with"
+              />
         </div>
-
+      
         {/* Divider */}
         <div className="flex gap-3 items-center justify-center">
           <hr className="w-29 text-gray-300" />
