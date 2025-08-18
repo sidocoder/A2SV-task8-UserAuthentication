@@ -12,7 +12,7 @@ const VerifyEmail = () => {
 
   const [otp, setOtp] = useState(Array(4).fill(""));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(180);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -74,9 +74,9 @@ const VerifyEmail = () => {
     if (!email) return;
     try {
       setLoading(true);
-      const res = await axios.post(`${BASE_URL}/resend-otp`, { email });
+      const res = await axios.post(`${BASE_URL}/verify-email`, { email });
       setMessage(res.data.message || "OTP resent.");
-      setTimer(60);
+      setTimer(180);
       setOtp(Array(4).fill(""));
       inputRefs.current[0]?.focus();
     } catch (err: any) {
