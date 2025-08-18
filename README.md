@@ -34,11 +34,11 @@ NEXT_PUBLIC_API_BASE_URL=https://akil-backend.onrender.com
 
 ## 📸 Screenshots
  ### 1. signup page
- ![Signup Page](/public/images/1.png)
+ ![Signup Page](/public/images/2.png)
       
       
  ### 2. login page
- ![Signup Page](/public/images/2.png)
+ ![Signup Page](/public/images/1.png)
  ### 1. verify-email page
  ![Signup Page](/public/images/3.png)
 
